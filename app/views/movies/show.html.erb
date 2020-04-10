@@ -10,8 +10,7 @@
 				<th>release</th>
 			</tr>
 		</thead>
-		<!-- books変数内から一つずつ取り出しbook変数へ -->
-		<!-- bookとひもついているユーザーの画像データを表示させる -->
+
 		<tbody>
 			<tr>
 				<td>
@@ -19,6 +18,7 @@
 					<%= attachment_image_tag @movie, :movie_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg",size:'153x215'%>
 				<% end %>
 				</td>
+
 				<!-- タイトルにリンク付けする -->
 				<td>
 				<%= link_to movie_path(@movie) do %>
@@ -30,8 +30,30 @@
 				<td><%= @movie.cast %></td>
 				<td><%= @movie.director %></td>
 				<td><%= @movie.release %></td>
+				<!-- 管理者にのみ表示させる -->
 				<td><%= link_to "Destroy", movie_path(@movie),class:"btn btn-danger", method: :delete, data: { confirm: '本当に削除して良いですか?',cancel: 'やめる',commit: '削除する'} %></td>
 			</tr>
 		</tbody>
-</table>
+	</table>
+
+	<div>
+		<h2 class="title-xlarge">
+			<%= link_to "映画レビュー >","#" %></h2>
+			<%= @movie.comments.count %>件のレビュー
+			<div class="flex">
+			<ol class="slide-menu slide-5 slick-initialized slick-slider">
+			<div class="slick-list draggable">
+			<%= link_to "レビューを書く >",new_movie_comment_path(@movie) %></h2>
+		<% @movie.comments.each do |f| %>
+			<%= f.user.name %>
+			<%= f.created_at.strftime('%Y/%m/%d') %>
+			<%= f.comment %>
+		<% end %>
+	</div>
+	<div>
+		<%= link_to "→ すべての映画レビューを見る",movies_path, local: true, class: "btn" %>
+	</div>
+	</ol>
+	</div>
+</div>
 </div>

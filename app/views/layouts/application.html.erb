@@ -25,7 +25,7 @@
 <!-- ハンバーガーメニューを作る -->
           <ul class="navbar-right">
             <li>
-              <% if current_user == @user || current_user.admin? %>
+              <% if current_user == current_user %>
                 <%= link_to "お知らせ","#",class:"glyphicon glyphicon-home animated-hover" %>
               <% end %>
             </li>
@@ -33,10 +33,10 @@
               <%= link_to_unless_current " 検索フォーム", "#",class:"glyphicon glyphicon-home animated-hover"%>
             </li>
             <li>
-              <%= link_to_unless_current " ログイン", "#",class:"glyphicon glyphicon-user" %>
+              <%= link_to_unless_current " ログイン",user_session_path,class:"glyphicon glyphicon-user" %>
             </li>
             <li>
-              <%= link_to_unless_current " 新規登録", "#",class:"glyphicon glyphicon-book" %>
+              <%= link_to_unless_current " 新規登録", new_user_session_path,class:"glyphicon glyphicon-book" %>
             </li>
             <li>
               <%= link_to " logout", destroy_user_session_path,class:"glyphicon glyphicon-log-out",data: {confirm: "ログアウトしますか？"}%>
@@ -50,10 +50,10 @@
               <%= link_to_unless_current " 検索フォーム", "#",class:"glyphicon glyphicon-home" %>
             </li>
             <li>
-              <%= link_to_unless_current " ログイン", "#",class:"glyphicon glyphicon-link" %>
+              <%= link_to " ログイン", user_session_path,class:"glyphicon glyphicon-link" %>
             </li>
             <li>
-              <%= link_to_unless_current " 新規登録", "#",class:"glyphicon glyphicon-pencil" %>
+              <%= link_to " 新規登録", new_user_registration_path,class:"glyphicon glyphicon-pencil" %>
             </li>
             <li>
               <%= link_to_unless_current " ログアウト", "#",class:"glyphicon glyphicon-log-in" %>
