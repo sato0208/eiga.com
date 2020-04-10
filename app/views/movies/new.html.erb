@@ -1,0 +1,25 @@
+<div class="col-xs-9">
+<%= form_for @new_movie do |f| %>
+		<h2>新規投稿</h2>
+		 <div class="profile">
+			<p><%= f.label :title %></p>
+			<p><%= f.text_field :title, rows:'1' %></p>
+			<p><%= f.label :body %></p>
+			<p><%= f.text_area :body, rows:'3' %></p>
+
+			<p><%= f.label :cast %></p>
+			<p><%= f.text_field :cast, rows:'1' %></p>
+
+			<p><%= f.label :director %></p>
+			<p><%= f.text_field :director, rows:'1' %></p>
+
+			<p><%= f.label :release %></p>
+			<p><%= f.text_field :release, rows:'1' %></p>
+
+			<p><%= f.label :movie_image %></p>
+			<p><%= f.attachment_field :movie_image %></p>
+
+			<p><%= f.submit"create", class: "btn btn-funky-moon btn-fab fas fa-pastafarianism" %></p>
+		</div>
+	<% end %>
+</div>

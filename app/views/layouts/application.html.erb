@@ -1,0 +1,169 @@
+<!-- これはヘッダーに表示させるメニュー画面 -->
+<!DOCTYPE html>
+<html>
+<head>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+<!-- FontAwesomeアイコンを使用するための記述。スタイルシートの上に書くこと -->
+    <script src="https://kit.fontawesome.com/2b9bb87bcc.js" crossorigin="anonymous"></script>
+
+  <%= stylesheet_link_tag'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <% if flash.now[:notice] %>
+    <p><% flash[:notice] %></p>
+    <% end %>
+</head>
+<header>
+  <div class="container">
+    <nav class="nav navbar-nav navbar-left">
+      <span><%= link_to "管理者用フォーム >",new_movie_path %></span>
+    </nav>
+<!-- ユーザーがサインインしている場合 -->
+      <% if user_signed_in? %>
+      <div id="sp-menu">
+<!-- ハンバーガーメニューを作る -->
+          <ul class="navbar-right">
+            <li>
+              <% if current_user == @user || current_user.admin? %>
+                <%= link_to "お知らせ","#",class:"glyphicon glyphicon-home animated-hover" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to_unless_current " 検索フォーム", "#",class:"glyphicon glyphicon-home animated-hover"%>
+            </li>
+            <li>
+              <%= link_to_unless_current " ログイン", "#",class:"glyphicon glyphicon-user" %>
+            </li>
+            <li>
+              <%= link_to_unless_current " 新規登録", "#",class:"glyphicon glyphicon-book" %>
+            </li>
+            <li>
+              <%= link_to " logout", destroy_user_session_path,class:"glyphicon glyphicon-log-out",data: {confirm: "ログアウトしますか？"}%>
+            </li>
+            </ul>
+          <!-- ユーザーがサインインしていない場合 -->
+      <% else %>
+          <ul class="navbar-right">
+
+            <li>
+              <%= link_to_unless_current " 検索フォーム", "#",class:"glyphicon glyphicon-home" %>
+            </li>
+            <li>
+              <%= link_to_unless_current " ログイン", "#",class:"glyphicon glyphicon-link" %>
+            </li>
+            <li>
+              <%= link_to_unless_current " 新規登録", "#",class:"glyphicon glyphicon-pencil" %>
+            </li>
+            <li>
+              <%= link_to_unless_current " ログアウト", "#",class:"glyphicon glyphicon-log-in" %>
+            </li>
+          </ul>
+    <% end %>
+  </div>
+<!-- ハンバーガーメニューここから -->
+  <div id="hm-icon">
+      <a class="menu-trigger" href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+</header>
+<!-- ハンバーガーメニューここまで -->
+
+<!-- サイドバーここから -->
+<!-- 配列に入れたらシンプルに書けるみたい。後で修正する -->
+<body>
+  <div class="container">
+    <div class="row">
+    <div class="col-xs-3">
+        <% if flash.now[:notice] %>
+        　　<p><%= flash[:notice] %></p>
+        <% end %>
+    <div class="side-menu" style="position: static;">
+        <h1><%= link_to "/" do %>
+        <%= image_tag 'logo_nav.png' %></h1>
+          <% end %>
+          <ul class="link-primariy">
+            <li>
+              <%= link_to "　上映中映画","#", class: "fas fa-film" %>
+            </li>
+            <li>
+              <!-- ここだけなぜか太字にならない -->
+              <%= link_to "　今週公開映画","#", class: "fa fa-hand-o-right" %>
+            </li>
+            <li>
+              <%= link_to "　公開スケジュール","#", class: "fa fa-calendar" %>
+            </li>
+            <li>
+              <%= link_to "　予告動画","#", class: "fa fa-play" %>
+            </li>
+            <li>
+              <%= link_to "　ニュース","#", class: "fa fa-check-square" %>
+            </li>
+            <li>
+              <%= link_to "　ランキング","#", class: "fa fa-magic" %>
+            </li>
+          </ul>
+          <ul class="link-basic">
+            <li>
+              <%= link_to "作品情報","#" %>
+            </li>
+            <li>
+              <%= link_to "映画レビュー","#" %>
+            </li>
+            <li>
+              <%= link_to "試写会","#" %>
+            </li>
+            <li>
+              <%= link_to "プレゼント","#" %>
+            </li>
+            <li>
+              <%= link_to "注目映画特集","#" %>
+            </li>
+            <li>
+              <%= link_to "インタビュー","#" %>
+            </li>
+            <li>
+              <%= link_to "新作映画評論","#" %>
+            </li>
+            <li>
+              <%= link_to "俳優・監督","#" %>
+            </li>
+            <li>
+              <%= link_to "DVD・ブルーレイ","#" %>
+            </li>
+            <li>
+              <%= link_to "動画配信検索","#" %>
+            </li>
+            <li>
+              <%= link_to "海外ドラマ","#" %>
+            </li>
+            <li>
+              <%= link_to "マガジン","#" %>
+            </li>
+            <li>
+              <%= link_to "コラム","#" %>
+            </li>
+            <li>
+              <%= link_to "クラウドファンド","#" %>
+            </li>
+            <li>
+              <%= link_to "エンタメ求人ナビ","#" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <!-- サイドバーここまで -->
+    <%= yield %>
+
+<!-- ここからフッター -->
+
+</div>
+<!-- <div class="wrapper">
+  <div class="footer>
+    <p class="copyright">© eiga.com inc. All rights reserved.</p>
+  </div>
+</div> -->
+  <!-- ここまでフッター

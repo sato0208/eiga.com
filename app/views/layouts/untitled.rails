@@ -1,0 +1,12 @@
+<p><%= link_to "",edit_user_path(@user_profile.id), class: "btn btn-funky-moon btn-fab glyphicon glyphicon-wrench" %></p>
+	<%= form_for @new_book do |f| %>
+		<h2>新規投稿</h2>
+		 <div class="profile">
+			<p><%= f.label :title %></p>
+			<p><%= f.text_field :title, rows:'1' %></p>
+			<p><%= f.label :body %></p>
+			<p><%= f.text_area :body, rows:'3' %></p>
+
+			<p><%= f.submit"create", class: "btn btn-funky-moon btn-fab fas fa-pastafarianism" %></p>
+		</div>
+	<% end %>

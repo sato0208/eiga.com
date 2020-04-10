@@ -1,0 +1,37 @@
+<div class="col-xs-9">
+   <table class="table">
+		<thead>
+			<tr>
+				<th>image</th>
+				<th>Title</th>
+				<th>body</th>
+				<th>cast</th>
+				<th>director</th>
+				<th>release</th>
+			</tr>
+		</thead>
+		<!-- books変数内から一つずつ取り出しbook変数へ -->
+		<!-- bookとひもついているユーザーの画像データを表示させる -->
+		<tbody>
+			<tr>
+				<td>
+				<%= link_to movie_path(@movie) do %>
+					<%= attachment_image_tag @movie, :movie_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg",size:'153x215'%>
+				<% end %>
+				</td>
+				<!-- タイトルにリンク付けする -->
+				<td>
+				<%= link_to movie_path(@movie) do %>
+					<%= @movie.title %>
+				<% end %>
+				</td>
+				<!-- bodyを表示 -->
+				<td><%= @movie.body %></td>
+				<td><%= @movie.cast %></td>
+				<td><%= @movie.director %></td>
+				<td><%= @movie.release %></td>
+				<td><%= link_to "Destroy", movie_path(@movie),class:"btn btn-danger", method: :delete, data: { confirm: '本当に削除して良いですか?',cancel: 'やめる',commit: '削除する'} %></td>
+			</tr>
+		</tbody>
+</table>
+</div>
