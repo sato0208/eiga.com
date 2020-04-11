@@ -39,15 +39,20 @@
 	<div>
 		<h2 class="title-xlarge">
 			<%= link_to "映画レビュー >","#" %></h2>
-			<%= @movie.comments.count %>件のレビュー
+			<p><%= @movie.comments.count %>件のレビュー</p>
+			<%= link_to "レビューを書く >",new_movie_comment_path(@movie) %></h2>
 			<div class="flex">
 			<ol class="slide-menu slide-5 slick-initialized slick-slider">
 			<div class="slick-list draggable">
-			<%= link_to "レビューを書く >",new_movie_comment_path(@movie) %></h2>
 		<% @movie.comments.each do |f| %>
-			<%= f.user.name %>
+			<div class="user-review-inner">
+				<h2 class="review-title">
+	<span class="rating-star val40">4.0</span>
+		    <a><%= f.title %></a>
+		</h2>
+	</div>
+			<%= f.user.name %>  さん　|
 			<%= f.created_at.strftime('%Y/%m/%d') %>
-			<%= f.comment %>
 		<% end %>
 	</div>
 	<div>

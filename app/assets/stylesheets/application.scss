@@ -133,6 +133,29 @@ body {
     line-height: 1.6;
     font-feature-settings: "palt" 1;
     }
+.rating-star {
+    position: relative;
+    font-weight: bold;
+    padding: 0 8px 0 116px;
+    display: inline-block;
+    font-size: 1.6rem;
+    color: #fd7f03;
+}
+
+.rating-star:before {
+    content: '';
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 2px;
+    left: 0;
+    background: url(../images/assets/rating_star.svg) no-repeat;
+    background-size: 100% auto;
+    background-position: 0 -220px;
+}
+
 
 div {
     display: block;
@@ -146,9 +169,7 @@ div {
     margin: 20px 0;
     height: 390px;
     float: right;
-    
 }
-
 
 .fas {
   font-size:110%;
