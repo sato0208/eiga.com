@@ -4,6 +4,7 @@ class MoviesController < ApplicationController
   # カレントユーザーだけしかedit,update,destroyアクションは使えない。
   before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
   def show
+    user = User.find(params[:id])
   end
 
   def index

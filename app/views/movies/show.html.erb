@@ -20,18 +20,20 @@
 				</td>
 
 				<!-- タイトルにリンク付けする -->
-				<td>
+			<td>
 				<%= link_to movie_path(@movie) do %>
 					<%= @movie.title %>
 				<% end %>
-				</td>
-				<!-- bodyを表示 -->
-				<td><%= @movie.body %></td>
-				<td><%= @movie.cast %></td>
-				<td><%= @movie.director %></td>
-				<td><%= @movie.release %></td>
-				<!-- 管理者にのみ表示させる -->
-				<td><%= link_to "Destroy", movie_path(@movie),class:"btn btn-danger", method: :delete, data: { confirm: '本当に削除して良いですか?',cancel: 'やめる',commit: '削除する'} %></td>
+			</td>
+			<!-- bodyを表示 -->
+			<td><%= @movie.body %></td>
+			<td><%= @movie.cast %></td>
+			<td><%= @movie.director %></td>
+			<td><%= @movie.release %></td>
+			<!-- 管理者にのみ表示させる -->
+			<% if current_user.admin? && !(current_user == @user) %>
+			<td><%= link_to "Destroy", movie_path(@movie),class:"btn btn-danger", method: :delete, data: { confirm: '本当に削除して良いですか?',cancel: 'やめる',commit: '削除する'} %></td>
+			<% end %>
 			</tr>
 		</tbody>
 	</table>
